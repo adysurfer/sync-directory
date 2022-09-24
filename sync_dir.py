@@ -135,7 +135,7 @@ while True:
         for file in files_replica:
             if file in files_src:
                 if compare_files(src_dirpath + '/' + file, replica_dirpath + '/' + file):
-                    logging.info(f'File {file} is up to date with {file} in source directory')
+                    logging.info(f'{file} in replica directory is up to date with {file} in source directory')
 
                 else:
                     # Copy files from source to replica directory

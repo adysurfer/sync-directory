@@ -16,7 +16,7 @@ Last Updated By: Aditya
 **Features:**
 - Periodically one-way synchronization, identical copy of source directory is maintained in replica directory;
 - File creation/copying/removal operations are logged to a file and to the console output;
-- Directories path, synchronization interval and log file path are provided using the command line arguments;
+- Directory path, synchronization interval and log file path are provided using the command line arguments;
 
 **Log File Preview:**
 

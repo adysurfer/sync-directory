@@ -20,7 +20,8 @@ Last Updated By: Aditya
 
 **Log File Preview:**
 
-<img width="600" alt="Screenshot 2022-09-24 at 11 42 16" src="https://user-images.githubusercontent.com/5576793/192091342-ddbad91e-6172-4bd3-b171-565b6a45e6c0.png">
+<img width="700" alt="Screenshot 2022-09-24 at 13 44 11" src="https://user-images.githubusercontent.com/5576793/192096150-f77ba466-7b8d-409e-bfc3-deb229f44395.png">
+
 
 **Project Structure:**
 

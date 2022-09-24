@@ -1,10 +1,10 @@
 """
-A program that synchronizes two folders: source and replica;
+A program that synchronizes two directories: source and replica;
 
 Features:
-> Periodically one-way synchronization, identical copy of source folder is maintained in replica folder;
+> Periodically one-way synchronization, identical copy of source directory is maintained in replica directory;
 > File creation/copying/removal operations are logged to a file and to the console output;
-> Folder paths, synchronization interval and log file path are provided using the command line arguments;
+> Directory path, synchronization interval and log file path are provided using the command line arguments;
 
 """
 # Import required dependencies
@@ -40,7 +40,7 @@ def compare_files(file_src, file_replica):
 
 
 # Compare source and replica directories
-def compare_folders(file_src, file_replica):
+def compare_directories(file_src, file_replica):
     # Get all files from source directory
     files_source = os.listdir(file_src)
 
@@ -63,8 +63,8 @@ def compare_folders(file_src, file_replica):
 
 
 # Input source/replica directories path
-source_path = input("Enter source folder path\n")
-replica_path = input("Enter replica folder path\n")
+source_path = input("Enter source directory path\n")
+replica_path = input("Enter replica directory path\n")
 
 # Directories name
 source_dirname = "source"
@@ -104,7 +104,7 @@ while True:
 
     # Check source directory existence
     if os.path.isdir(src_dirpath):
-        logging.info('source directory status : ONLINE')
+        logging.info('source directory status -> ONLINE')
 
     # Delete replica directory if source directory is deleted manually
     else:
@@ -112,9 +112,9 @@ while True:
         shutil.rmtree(replica_dirpath, ignore_errors=True)
         break
 
-    # check replica directory existence
+    # Check replica directory existence
     if os.path.isdir(replica_dirpath):
-        logging.info('replica directory status : ONLINE')
+        logging.info('replica directory status -> ONLINE')
 
     # Create replica directory if replica directory is deleted manually
     else:
@@ -122,7 +122,7 @@ while True:
         os.mkdir(replica_dirpath)
 
     # Check if source directory is in sync with replica
-    if compare_folders(src_dirpath, replica_dirpath):
+    if compare_directories(src_dirpath, replica_dirpath):
         logging.info('replica directory is in sync with source directory')
     else:
         # Get source directory files
@@ -135,24 +135,24 @@ while True:
         for file in files_replica:
             if file in files_src:
                 if compare_files(src_dirpath + '/' + file, replica_dirpath + '/' + file):
-                    logging.info(f'File {file} is up to date')
+                    logging.info(f'File {file} is up to date with {file} in source directory')
 
                 else:
                     # Copy files from source to replica directory
                     os.remove(replica_dirpath + '/' + file)
                     os.system('cp ' + src_dirpath + '/' + file + ' ' + replica_dirpath)
-                    logging.info(f'File {file} is updated')
+                    logging.info(f'File {file} is updated in replica directory')
 
             if file not in files_src:
                 # Delete files from replica directory
                 os.remove(replica_dirpath + '/' + file)
-                logging.info(f'File {file} is deleted')
+                logging.info(f'File {file} is deleted from replica directory')
 
         for file in files_src:
             if file not in files_replica:
                 # Copy files from source to replica directory
                 os.system('cp ' + src_dirpath + '/' + file + ' ' + replica_dirpath)
-                logging.info(f'File {file} is copied')
+                logging.info(f'File {file} is copied to replica directory')
 
     # Provide synchronization interval
     try:
